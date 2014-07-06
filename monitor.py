@@ -2,6 +2,7 @@ import curses
 import math
 import socket
 import sys
+import re
 from threading import Timer
 
 HOST = "5.135.165.34"
@@ -88,7 +89,7 @@ class UrTop:
         # Display the player information
         y = 6
         for player in self.server_details['players']:
-            self.screen.addnstr(y, 0, player['name'], self.name_length)
+            self.screen.addnstr(y, 0, re.sub('\^\d', '', player['name']), self.name_length)
             self.screen.addnstr(y, self.name_length + 1, player['score'], self.score_length)
             self.screen.addnstr(y, self.name_length + 1 + self.score_length + 1, player['ping'], self.ping_length)
 
